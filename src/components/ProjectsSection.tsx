@@ -4,17 +4,19 @@ import { FadeIn } from './FadeIn';
 import { LiveProjectButton } from './LiveProjectButton';
 import { ProjectData } from './ProjectDetailModal';
 
-// Free Figma Community website designs adapted for modern web engineering:
-// 01 Web Design (Untitled Studio - SaaS landing page & design system)
-// 02 Web App (LinearFlow OS - Keyboard-first productivity command center)
-// 03 SEO Optimization (Preline Search Engine - High-velocity search analytics)
-// 04 AI Chatbots (Copilot AI Studio - Conversational AI interface & knowledge engine)
-import figmaUntitledMain from '../assets/images/figma_untitled_hero_1791108648692.jpg';
-import figmaUntitledSub from '../assets/images/figma_untitled_sub_1791108664930.jpg';
+// Project 01: Free Dark Admin Dashboards from Figma Community
+import figmaDarkAdminMain from '../assets/images/figma_dark_admin_main_1791113889766.jpg';
+import figmaDarkAdminSub from '../assets/images/figma_dark_admin_sub_1791113905703.jpg';
+
+// Project 02: LinearFlow OS
 import figmaLinearflowMain from '../assets/images/figma_linearflow_hero_1791108677980.jpg';
 import figmaLinearflowSub from '../assets/images/figma_linearflow_sub_1791108692540.jpg';
+
+// Project 03: Preline Search Engine
 import figmaPrelineMain from '../assets/images/figma_preline_hero_1791108705176.jpg';
 import figmaPrelineSub from '../assets/images/figma_preline_sub_1791108717221.jpg';
+
+// Project 04: Copilot AI Studio
 import figmaCopilotMain from '../assets/images/figma_copilot_hero_1791108732194.jpg';
 import figmaCopilotSub from '../assets/images/figma_copilot_sub_1791108747199.jpg';
 
@@ -24,26 +26,27 @@ interface ProjectsSectionProps {
 
 export const PROJECTS: ProjectData[] = [
   {
-    id: 'untitled-studio',
+    id: 'free-dark-admin-dashboards',
     number: '01',
     category: '(Web Design)',
-    title: 'Untitled Studio',
-    subtitle: 'Modern SaaS Landing Page & Design System',
-    col1Image1: figmaUntitledSub,
-    col1Image2: figmaUntitledMain,
-    col2Image: figmaUntitledMain,
+    title: 'Dark Admin Dashboards',
+    subtitle: 'Modern SaaS Analytics & Multi-Purpose Admin Kit',
+    col1Image1: figmaDarkAdminSub,
+    col1Image2: figmaDarkAdminMain,
+    col2Image: figmaDarkAdminMain,
     description:
-      'A sleek, high-converting SaaS landing page engineered from the acclaimed Untitled UI open design system on Figma Community. Features responsive bento-grid feature modules, subtle ambient glow aesthetics, and bespoke editorial typography.',
-    tools: ['Figma Community Kit', 'Next.js 15', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
+      'A modular, dark-mode admin dashboard system adapted directly from the popular Figma Community template. Features comprehensive data analytics visualizations, interactive KPI widgets, granular user role tables, and a unified design system crafted for modern web applications.',
+    tools: ['Figma Community', 'React 19', 'Tailwind CSS', 'Recharts', 'TypeScript'],
     deliverables: [
-      'Bento-Grid Component Architecture',
-      'Fluid Responsive Layouts',
-      'Interactive Design Tokens',
-      'Conversion-Optimized CTA Funnel',
+      'Dark-Themed Admin Layout & Sidebar',
+      'Interactive Analytics & KPI Cards',
+      'Data Tables with Filter & Pagination',
+      'Complete Figma Component Design System',
     ],
-    client: 'Design System & Landing Page',
+    client: 'SaaS Admin & Analytics Platform',
     year: '2026',
-    figmaSource: 'Figma Community &bull; Free Design System',
+    figmaSource: 'Figma Community: free-dark-admin-dashboards',
+    figmaUrl: 'https://www.figma.com/community/file/1325597018063319916/free-dark-admin-dashboards',
   },
   {
     id: 'linearflow-task-os',
@@ -65,7 +68,7 @@ export const PROJECTS: ProjectData[] = [
     ],
     client: 'Productivity & Workflow Web App',
     year: '2026',
-    figmaSource: 'Figma Community &bull; Free App UI Kit',
+    figmaSource: 'Figma Community: Linear Productivity UI',
   },
   {
     id: 'preline-search-engine',
@@ -87,7 +90,7 @@ export const PROJECTS: ProjectData[] = [
     ],
     client: 'SEO & Performance Platform',
     year: '2026',
-    figmaSource: 'Figma Community &bull; Free Tailwind UI',
+    figmaSource: 'Figma Community: Preline UI Kit',
   },
   {
     id: 'copilot-ai-assistant',
@@ -109,7 +112,7 @@ export const PROJECTS: ProjectData[] = [
     ],
     client: 'Conversational AI Web Assistant',
     year: '2026',
-    figmaSource: 'Figma Community &bull; Free AI Kit',
+    figmaSource: 'Figma Community: Modern AI UI Kit',
   },
 ];
 
@@ -149,22 +152,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           scale,
           top: `${index * 24}px`,
         }}
-        className="w-full max-w-6xl rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 shadow-2xl relative"
+        className="w-full max-w-6xl rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[var(--card-border)] bg-[var(--bg-card)] p-4 sm:p-6 md:p-8 shadow-2xl relative transition-colors duration-300"
       >
         {/* Top Row: Number, category, project name, Live Project button */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
           <div className="flex items-center gap-4 sm:gap-6">
             {/* Huge Number */}
-            <span className="font-black text-[#D7E2EA] leading-none text-[clamp(2.6rem,7vw,110px)] select-none tracking-tight">
+            <span className="font-black text-[var(--text-primary)] leading-none text-[clamp(2.6rem,7vw,110px)] select-none tracking-tight">
               {project.number}
             </span>
 
             {/* Category & Project Name */}
             <div className="flex flex-col justify-center">
-              <span className="text-[#D7E2EA]/70 uppercase tracking-widest font-light text-xs sm:text-sm">
+              <span className="text-[var(--text-muted)] uppercase tracking-widest font-light text-xs sm:text-sm">
                 {project.category}
               </span>
-              <h3 className="text-[#D7E2EA] font-medium uppercase text-[clamp(1.1rem,2.4vw,2.2rem)] tracking-wide">
+              <h3 className="text-[var(--text-primary)] font-medium uppercase text-[clamp(1.1rem,2.4vw,2.2rem)] tracking-wide">
                 {project.title}
               </h3>
             </div>
@@ -181,7 +184,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {/* Left column (40% width): 2 stacked images */}
           <div className="w-full md:w-[40%] flex flex-col gap-3 sm:gap-4">
             <div
-              className="relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[60px] border border-white/10 group cursor-pointer"
+              className="relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[60px] border border-[var(--border-subtle)] group cursor-pointer"
               onClick={() => onOpenProject(project)}
             >
               <img
@@ -192,7 +195,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               />
             </div>
             <div
-              className="relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[60px] border border-white/10 group cursor-pointer"
+              className="relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[60px] border border-[var(--border-subtle)] group cursor-pointer"
               onClick={() => onOpenProject(project)}
             >
               <img
@@ -207,7 +210,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {/* Right column (60% width): 1 tall image */}
           <div className="w-full md:w-[60%] flex">
             <div
-              className="relative w-full h-full min-h-[220px] md:min-h-full overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[60px] border border-white/10 group cursor-pointer"
+              className="relative w-full h-full min-h-[220px] md:min-h-full overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[60px] border border-[var(--border-subtle)] group cursor-pointer"
               onClick={() => onOpenProject(project)}
             >
               <img
@@ -228,7 +231,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProject 
   return (
     <section
       id="projects"
-      className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-4 sm:px-6 md:px-10 pt-16 sm:pt-20 md:pt-28 pb-32"
+      className="bg-[var(--bg-primary)] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-4 sm:px-6 md:px-10 pt-16 sm:pt-20 md:pt-28 pb-32 transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto mb-12 sm:mb-16 md:mb-20 text-center">
         <FadeIn delay={0} y={40}>

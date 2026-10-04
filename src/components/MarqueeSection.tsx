@@ -72,7 +72,7 @@ export const MarqueeSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden relative select-none"
+      className="bg-[var(--bg-primary)] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden relative select-none transition-colors duration-300"
     >
       <div className="flex flex-col gap-3">
         {/* Row 1 - Moves RIGHT on scroll */}
@@ -84,7 +84,7 @@ export const MarqueeSection: React.FC = () => {
           {ROW_1_TRIPLED.map((src, idx) => (
             <div
               key={`row1-${idx}`}
-              className="w-[420px] h-[270px] min-w-[420px] flex-shrink-0 rounded-2xl overflow-hidden bg-[#161616] shadow-lg border border-white/5"
+              className="w-[420px] h-[270px] min-w-[420px] flex-shrink-0 rounded-2xl overflow-hidden bg-[var(--bg-card)] shadow-lg border border-[var(--border-subtle)]"
             >
               <img
                 src={src}
@@ -106,7 +106,7 @@ export const MarqueeSection: React.FC = () => {
           {ROW_2_TRIPLED.map((src, idx) => (
             <div
               key={`row2-${idx}`}
-              className="w-[420px] h-[270px] min-w-[420px] flex-shrink-0 rounded-2xl overflow-hidden bg-[#161616] shadow-lg border border-white/5"
+              className="w-[420px] h-[270px] min-w-[420px] flex-shrink-0 rounded-2xl overflow-hidden bg-[var(--bg-card)] shadow-lg border border-[var(--border-subtle)]"
             >
               <img
                 src={src}

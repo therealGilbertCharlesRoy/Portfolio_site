@@ -55,12 +55,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-full max-w-xl bg-[#121212] border-2 border-[#D7E2EA]/30 rounded-[32px] sm:rounded-[40px] p-6 sm:p-8 md:p-10 shadow-2xl text-[#D7E2EA] z-10 my-8"
+            className="relative w-full max-w-xl bg-[var(--modal-bg)] border-2 border-[var(--modal-border)] rounded-[32px] sm:rounded-[40px] p-6 sm:p-8 md:p-10 shadow-2xl text-[var(--text-primary)] z-10 my-8 transition-colors duration-300"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 sm:top-6 sm:right-6 p-2 rounded-full bg-white/5 hover:bg-white/15 text-[#D7E2EA] transition-colors cursor-pointer"
+              className="absolute top-5 right-5 sm:top-6 sm:right-6 p-2 rounded-full bg-[var(--modal-input-bg)] hover:opacity-80 text-[var(--text-primary)] transition-colors cursor-pointer border border-[var(--border-subtle)]"
               aria-label="Close modal"
             >
               <X size={20} />
@@ -68,13 +68,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
             {submitted ? (
               <div className="py-12 flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center mb-6">
                   <Check size={32} />
                 </div>
                 <h3 className="hero-heading font-black uppercase text-3xl mb-3">
                   Message Sent!
                 </h3>
-                <p className="text-[#D7E2EA]/70 text-sm sm:text-base max-w-sm">
+                <p className="text-[var(--text-muted)] text-sm sm:text-base max-w-sm">
                   Thanks for reaching out! Gilbert will review your project requirements and respond within 24 hours.
                 </p>
               </div>
@@ -84,29 +84,29 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   <h3 className="hero-heading font-black uppercase text-3xl sm:text-4xl leading-tight">
                     Let&apos;s Build Together
                   </h3>
-                  <p className="text-[#D7E2EA]/70 text-sm mt-1">
+                  <p className="text-[var(--text-muted)] text-sm mt-1">
                     Have a vision for a website, web app, or AI project? Let&apos;s talk.
                   </p>
                 </div>
 
                 {/* Quick copy info */}
-                <div className="flex items-center justify-between bg-black/40 border border-white/10 rounded-2xl p-3.5 mb-6 text-xs sm:text-sm">
+                <div className="flex items-center justify-between bg-[var(--modal-input-bg)] border border-[var(--border-subtle)] rounded-2xl p-3.5 mb-6 text-xs sm:text-sm">
                   <div className="flex items-center gap-2.5">
-                    <Mail size={16} className="text-[#BBCCD7]" />
-                    <span className="font-mono text-white select-all">{email}</span>
+                    <Mail size={16} className="text-[var(--text-primary)]" />
+                    <span className="font-mono text-[var(--text-primary)] select-all font-medium">{email}</span>
                   </div>
                   <button
                     onClick={copyEmail}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-xs text-[#D7E2EA] transition cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--modal-input-bg)] hover:opacity-80 text-xs text-[var(--text-primary)] border border-[var(--border-subtle)] transition cursor-pointer"
                   >
-                    {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
+                    {copied ? <Check size={12} className="text-emerald-500" /> : <Copy size={12} />}
                     {copied ? 'Copied!' : 'Copy'}
                   </button>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs uppercase tracking-widest font-medium text-[#D7E2EA]/80 mb-1.5">
+                    <label className="block text-xs uppercase tracking-widest font-semibold text-[var(--text-primary)] mb-1.5">
                       Your Name
                     </label>
                     <input
@@ -115,12 +115,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                       placeholder="e.g. Alex Mercer"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#1A1A1A] border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#BBCCD7] transition"
+                      className="w-full bg-[var(--modal-input-bg)] border border-[var(--modal-input-border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-primary)] transition"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-widest font-medium text-[#D7E2EA]/80 mb-1.5">
+                    <label className="block text-xs uppercase tracking-widest font-semibold text-[var(--text-primary)] mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -129,18 +129,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                       placeholder="alex@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[#1A1A1A] border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#BBCCD7] transition"
+                      className="w-full bg-[var(--modal-input-bg)] border border-[var(--modal-input-border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-primary)] transition"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-widest font-medium text-[#D7E2EA]/80 mb-1.5">
+                    <label className="block text-xs uppercase tracking-widest font-semibold text-[var(--text-primary)] mb-1.5">
                       Project Type
                     </label>
                     <select
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full bg-[#1A1A1A] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#BBCCD7] transition cursor-pointer"
+                      className="w-full bg-[var(--modal-input-bg)] border border-[var(--modal-input-border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-primary)] transition cursor-pointer"
                     >
                       <option value="Web Design">01 - Web Design</option>
                       <option value="Web App Development (e-commerce, CRM etc)">02 - Web App Development (e-commerce, CRM etc)</option>
@@ -150,7 +150,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-widest font-medium text-[#D7E2EA]/80 mb-1.5">
+                    <label className="block text-xs uppercase tracking-widest font-semibold text-[var(--text-primary)] mb-1.5">
                       Project Details & Timeline
                     </label>
                     <textarea
@@ -159,7 +159,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                       placeholder="Tell me about your product, desired vibe, key deliverables, and timeframe..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-[#1A1A1A] border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#BBCCD7] transition resize-none"
+                      className="w-full bg-[var(--modal-input-bg)] border border-[var(--modal-input-border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-primary)] transition resize-none"
                     />
                   </div>
 

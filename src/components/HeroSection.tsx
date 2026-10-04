@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { FadeIn } from './FadeIn';
 import { ContactButton } from './ContactButton';
 import { Magnet } from './Magnet';
+import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from '../context/ThemeContext';
 
 interface HeroSectionProps {
   onContactClick: () => void;
@@ -10,19 +12,18 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
   const headingRef = useRef<HTMLDivElement>(null);
   const [characterTop, setCharacterTop] = useState<number | null>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const updatePosition = () => {
       if (headingRef.current) {
         const rect = headingRef.current.getBoundingClientRect();
-        // Position slightly below the bottom of the heading (12px margin)
         setCharacterTop(Math.round(rect.bottom + 12));
       }
     };
 
     updatePosition();
 
-    // Re-check after fonts load to ensure precise cap-height calculations
     if (document.fonts) {
       document.fonts.ready.then(updatePosition);
     }
@@ -39,40 +40,47 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
   };
 
   return (
-    <section className="relative h-screen flex flex-col justify-between overflow-x-clip bg-[#0C0C0C] select-none">
+    <section className="relative h-screen flex flex-col justify-between overflow-x-clip bg-[var(--bg-primary)] select-none transition-colors duration-300">
       {/* Navbar */}
       <FadeIn delay={0} y={-20} as="nav" className="w-full relative z-20 px-6 md:px-10 pt-6 md:pt-8">
-        <div className="w-full flex justify-between items-center text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem]">
-          <button
-            onClick={() => scrollTo('about')}
-            className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
-          >
-            About
-          </button>
-          <button
-            onClick={() => scrollTo('services')}
-            className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
-          >
-            Services
-          </button>
-          <button
-            onClick={() => scrollTo('faq')}
-            className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
-          >
-            FAQ
-          </button>
-          <button
-            onClick={() => scrollTo('projects')}
-            className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
-          >
-            Projects
-          </button>
-          <button
-            onClick={onContactClick}
-            className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
-          >
-            Contact
-          </button>
+        <div className="w-full flex justify-between items-center text-[var(--text-primary)] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-base lg:text-[1.25rem]">
+          <div className="flex items-center gap-4 sm:gap-6 md:gap-10">
+            <button
+              onClick={() => scrollTo('about')}
+              className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
+            >
+              About
+            </button>
+            <button
+              onClick={() => scrollTo('services')}
+              className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => scrollTo('faq')}
+              className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
+            >
+              FAQ
+            </button>
+            <button
+              onClick={() => scrollTo('projects')}
+              className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
+            >
+              Projects
+            </button>
+            <button
+              onClick={onContactClick}
+              className="hover:opacity-70 transition-opacity duration-200 cursor-pointer"
+            >
+              Contact
+            </button>
+          </div>
+
+          {/* Theme switcher toggle button */}
+          <div className="flex items-center">
+            <ThemeToggle variant="nav" />
+          </div>
         </div>
       </FadeIn>
 
@@ -107,7 +115,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
               src="/src/assets/images/hero_character_cutout.png"
               alt="Gilbert - Futuristic 3D Creator Character"
               referrerPolicy="no-referrer"
-              className="w-full h-auto max-h-[46vh] sm:max-h-[50vh] md:max-h-[54vh] object-contain pointer-events-none drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] select-none filter contrast-[1.05]"
+              className={`w-full h-auto max-h-[46vh] sm:max-h-[50vh] md:max-h-[54vh] object-contain pointer-events-none select-none filter contrast-[1.05] transition-all duration-300 ${
+                theme === 'light'
+                  ? 'drop-shadow-[0_20px_35px_rgba(0,0,0,0.22)]'
+                  : 'drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)]'
+              }`}
               draggable={false}
             />
           </Magnet>
@@ -117,7 +129,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
       {/* Bottom Bar */}
       <div className="relative z-20 w-full flex justify-between items-end pb-7 sm:pb-8 md:pb-10 px-6 md:px-10">
         <FadeIn delay={0.35} y={20}>
-          <p className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug text-[clamp(0.75rem,1.4vw,1.5rem)] max-w-[170px] sm:max-w-[230px] md:max-w-[280px]">
+          <p className="text-[var(--text-primary)] font-light uppercase tracking-wide leading-snug text-[clamp(0.75rem,1.4vw,1.5rem)] max-w-[170px] sm:max-w-[230px] md:max-w-[280px]">
             A web developer building the internet one website at a time!
           </p>
         </FadeIn>

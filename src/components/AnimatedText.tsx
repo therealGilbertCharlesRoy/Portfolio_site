@@ -18,7 +18,7 @@ const Char: React.FC<CharProps> = ({ char, progress, range }) => {
   return (
     <span className="relative inline-block">
       <span className="opacity-0 select-none pointer-events-none">{char}</span>
-      <motion.span style={{ opacity }} className="absolute inset-0 select-none">
+      <motion.span style={{ opacity }} className="absolute inset-0 select-none text-[var(--text-primary)]">
         {char}
       </motion.span>
     </span>
@@ -44,7 +44,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   return (
     <p
       ref={containerRef}
-      className={`text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px] text-[clamp(1rem,2vw,1.35rem)] ${className}`}
+      className={`text-[var(--text-primary)] font-medium text-center leading-relaxed max-w-[560px] text-[clamp(1rem,2vw,1.35rem)] ${className}`}
     >
       {words.map((word, wordIndex) => {
         const wordChars = word.split('');
@@ -66,13 +66,8 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
           </span>
         );
 
-        // Account for space in character count
-        if (wordIndex < words.length - 1) {
-          charCounter++;
-        }
-
         return (
-          <React.Fragment key={`frag-${wordIndex}`}>
+          <React.Fragment key={`space-${wordIndex}`}>
             {renderedWord}
             {wordIndex < words.length - 1 && ' '}
           </React.Fragment>

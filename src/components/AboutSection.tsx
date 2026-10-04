@@ -14,7 +14,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
   return (
     <section
       id="about"
-      className="relative min-h-screen flex flex-col justify-center items-center bg-[#0C0C0C] px-5 sm:px-8 md:px-10 py-20 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center items-center bg-[var(--bg-primary)] px-5 sm:px-8 md:px-10 py-20 overflow-hidden transition-colors duration-300"
     >
       {/* Decorative 3D images in 4 corners */}
 

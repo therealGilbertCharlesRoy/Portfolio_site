@@ -4,6 +4,7 @@ import { ContactButton } from './ContactButton';
 import { Magnet } from './Magnet';
 import { ThemeToggle } from './ThemeToggle';
 import { useTheme } from '../context/ThemeContext';
+import heroCharacterCutout from '../assets/images/hero_character_cutout.png';
 
 interface HeroSectionProps {
   onContactClick: () => void;
@@ -112,7 +113,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
             className="w-full flex justify-center items-start"
           >
             <img
-              src="/src/assets/images/hero_character_cutout.png"
+              src={heroCharacterCutout}
               alt="Gilbert - Futuristic 3D Creator Character"
               referrerPolicy="no-referrer"
               className={`w-full h-auto max-h-[46vh] sm:max-h-[50vh] md:max-h-[54vh] object-contain pointer-events-none select-none filter contrast-[1.05] transition-all duration-300 ${

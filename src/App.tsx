@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { HeroSection } from './components/HeroSection';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
@@ -15,6 +15,10 @@ import { ThemeProvider } from './context/ThemeContext';
 import { ThemeToggle } from './components/ThemeToggle';
 
 function MainApp() {
+  useEffect(() => {
+    document.title = "Gilbert — Web Developer";
+  }, []);
+
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
   const [hasEntered, setHasEntered] = useState(false);
